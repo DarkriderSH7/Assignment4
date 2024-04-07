@@ -9,7 +9,6 @@ app.use(express.json());
 
 mongoose.connect('mongodb+srv://suhaibhussain26000:nePdZCOxE7FBWTIF@cluster0.j9fxnxj.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Define your endpoints here. For example, to create a new user:
 app.post('/users', async (req, res) => {
   try {
     const newUser = await User.create(req.body);
@@ -52,13 +51,13 @@ app.post('/products', async (req, res) => {
     }
   });
   app.post('/cart', async (req, res) => {
-    console.log("Received body:", req.body); // Log the complete request body
+    console.log("Received body:", req.body);
     const { userId, products } = req.body;
 
-    console.log("Products array:", products); // Specifically log the products array
+    console.log("Products array:", products); 
 
     if (!Array.isArray(products)) {
-        console.log("Products is not an array:", products); // Log what was received that is not an array
+        console.log("Products is not an array:", products); 
         return res.status(400).send({ message: 'Products must be an array' });
     }
 
@@ -70,7 +69,7 @@ app.post('/products', async (req, res) => {
         );
         res.status(201).send(userCart);
     } catch (error) {
-        console.error("Error updating cart:", error); // Log the full error message
+        console.error("Error updating cart:", error); 
         res.status(400).send(error);
     }
 });
